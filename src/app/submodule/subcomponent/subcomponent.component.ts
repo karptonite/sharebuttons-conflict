@@ -1,22 +1,21 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-
-import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: "app-subcomponent",
+  templateUrl: "./subcomponent.component.html",
+  styleUrls: ["./subcomponent.component.css"]
 })
-export class AppComponent implements OnInit {
+export class SubcomponentComponent implements OnInit {
   constructor(private http: HttpClient) {}
   title: Observable<string>;
 
   ngOnInit() {
     const headers = new HttpHeaders().set("Add-Prefix", "1");
     this.title = this.http
-      .get<any>("/books/v1/volumes?q=Karenina", { headers })
+      .get<any>("/books/v1/volumes?q=tolkien", { headers })
       .map(results => {
         return results.items[0].volumeInfo.title;
       });

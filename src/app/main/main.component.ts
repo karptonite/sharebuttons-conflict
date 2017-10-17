@@ -5,18 +5,18 @@ import "rxjs/add/operator/map";
 import { Observable } from "rxjs/Observable";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.css"]
 })
-export class AppComponent implements OnInit {
+export class MainComponent implements OnInit {
   constructor(private http: HttpClient) {}
   title: Observable<string>;
 
   ngOnInit() {
     const headers = new HttpHeaders().set("Add-Prefix", "1");
     this.title = this.http
-      .get<any>("/books/v1/volumes?q=Karenina", { headers })
+      .get<any>("/books/v1/volumes?q=harry+potter", { headers })
       .map(results => {
         return results.items[0].volumeInfo.title;
       });
